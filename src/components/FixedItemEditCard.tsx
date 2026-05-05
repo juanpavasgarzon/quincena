@@ -16,9 +16,10 @@ interface FixedItemEditCardProps {
   onCancel: () => void;
   onDelete?: () => void;
   isNew?: boolean;
+  flat?: boolean;
 }
 
-export function FixedItemEditCard({ item, onSave, onCancel, onDelete, isNew = false }: FixedItemEditCardProps) {
+export function FixedItemEditCard({ item, onSave, onCancel, onDelete, isNew = false, flat = false }: FixedItemEditCardProps) {
   const [label, setLabel] = useState(item.label);
   const [amount, setAmount] = useState(item.amount);
   const [frequency, setFrequency] = useState<Frequency>(item.frequency);
@@ -48,7 +49,7 @@ export function FixedItemEditCard({ item, onSave, onCancel, onDelete, isNew = fa
   };
 
   return (
-    <View style={styles.card}>
+    <View style={flat ? styles.flatCard : styles.card}>
       <Input
         label="Nombre del gasto"
         value={label}
@@ -158,6 +159,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     ...shadows.sm,
+  },
+  flatCard: {
+    padding: 20,
   },
   spacer: { height: 14 },
   field: { gap: 8 },

@@ -19,7 +19,7 @@ const TAB_ROUTES: Array<{
   { name: "index",     href: "/",           label: "Inicio",    icon: "home-outline",     iconActive: "home" },
   { name: "quincena",  href: "/quincena",   label: "Quincena",  icon: "calendar-outline",   iconActive: "calendar" },
   { name: "historial", href: "/historial",  label: "Historial", icon: "time-outline",     iconActive: "time" },
-  { name: "config",    href: "/config",     label: "Config",    icon: "settings-outline", iconActive: "settings" },
+  { name: "config",    href: "/config",     label: "Configuración",    icon: "settings-outline", iconActive: "settings" },
 ];
 
 function CustomTabBar() {

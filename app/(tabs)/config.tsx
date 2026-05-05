@@ -64,7 +64,7 @@ export default function ConfigScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title="Config" />
+      <ScreenHeader title="Configuración" />
       <ScrollView
         style={styles.root}
         contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(insets.bottom, 28) }]}
@@ -103,33 +103,7 @@ export default function ConfigScreen() {
         <View style={styles.pad}><SkeletonList /></View>
       ) : (
         <>
-          <View style={styles.pad}>
-            <View style={styles.list}>
-              {(items ?? []).map((it) =>
-                editingId === it.id ? (
-                  <FixedItemEditCard
-                    key={it.id}
-                    item={it}
-                    onSave={(patch) => handleSave(it.id, patch)}
-                    onCancel={() => setEditingId(null)}
-                    onDelete={() => handleDelete(it.id)}
-                  />
-                ) : (
-                  <FixedItemRow
-                    key={it.id}
-                    item={it}
-                    onToggle={(v) => handleToggle(it.id, v)}
-                    onEdit={() => {
-                      haptics.selection();
-                      setEditingId(it.id);
-                    }}
-                  />
-                )
-              )}
-            </View>
-          </View>
-
-          <View style={[styles.pad, { marginTop: 16 }]}>
+          <View style={[styles.pad, { marginTop: 4 }]}>
             {adding ? (
               <FixedItemEditCard
                 item={{ label: "", amount: 0, frequency: "monthly", is_active: true }}
@@ -148,6 +122,33 @@ export default function ConfigScreen() {
                 <Text style={styles.addBtnText}>＋ Añadir</Text>
               </Pressable>
             )}
+          </View>
+
+          <View style={styles.pad}>
+            <View style={styles.list}>
+              {(items ?? []).map((it) =>
+                editingId === it.id ? (
+                  <FixedItemEditCard
+                    key={it.id}
+                    item={it}
+                    onSave={(patch) => handleSave(it.id, patch)}
+                    onCancel={() => setEditingId(null)}
+                    onDelete={() => handleDelete(it.id)}
+                    flat
+                  />
+                ) : (
+                  <FixedItemRow
+                    key={it.id}
+                    item={it}
+                    onToggle={(v) => handleToggle(it.id, v)}
+                    onEdit={() => {
+                      haptics.selection();
+                      setEditingId(it.id);
+                    }}
+                  />
+                )
+              )}
+            </View>
           </View>
         </>
       )}
